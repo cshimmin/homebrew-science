@@ -35,6 +35,7 @@ class Root < Formula
     # Determine architecture
     arch = MacOS.prefer_64_bit? ? 'macosx64' : 'macosx'
     cocoa_flag = (build.with? 'x11') ? "--disable-cocoa" : "--enable-cocoa"
+    ftype_flag = (build.with? 'x11') ? "--enable-builtin-freetype" : ""
 
     qt_flag = (build.with? 'qt') ? "--enable-qt" : "--disable-qt"
     qtgsi_flag = (build.with? 'qt') ? "--enable-qtgsi" : "--disable-qtgsi"
@@ -50,6 +51,7 @@ class Root < Formula
            "--all",
            "--enable-builtin-glew",
            "#{cocoa_flag}",
+           "#{ftype_flag}",
            "#{qt_flag}", "#{qtgsi_flag}",
            "--prefix=#{prefix}",
            "--etcdir=#{prefix}/etc/root",
